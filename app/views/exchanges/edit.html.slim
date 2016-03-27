@@ -1,0 +1,10 @@
+h1 Exchanges#edit
+p Find me in app/views/exchanges/edit.html.slim
+
+
+= bootstrap_form_for @exchange do |f|
+
+  = f.number_field :custom_rate
+  = f.datetime_select :expires_at, layout: :inline
+  
+  = f.submit 'update rate', class: 'btn btn-success btn-sm'

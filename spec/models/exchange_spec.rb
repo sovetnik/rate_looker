@@ -23,11 +23,16 @@ RSpec.describe Exchange, type: :model do
   end
 
   describe '#refresh_rate' do
-    let(:subject) { exchange.refresh_rate }
-    it 'should fetch new rate from bank' do
+    let(:subject) { exchange.refresh_rate! }
+    before do
       allow(exchange).to receive(:fetch_rate).and_return(33.99.to_d)
+    end
+    it 'should updaste rate with fetched rate' do
       subject
       expect(exchange.fresh_rate).to eq 33.99
+    end
+    it 'should return fetched rate' do
+      expect(subject).to eq 33.99
     end
   end
 end

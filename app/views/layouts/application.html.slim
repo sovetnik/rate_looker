@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Oblaka
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = csrf_meta_tags
+    = action_cable_meta_tag
+    = stylesheet_link_tag    "application", media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag "application", 'data-turbolinks-track' => true
+
+  body
+    nav.navbar.navbar-default role="navigation"
+      .row
+        .col-md-8.col-md-offset-2
+          /! Brand and toggle get grouped for better mobile display
+          .navbar-header
+            = link_to 'Rate Looker', root_path, class: 'navbar-brand'
+            .ul.nav.navbar-nav
+              li= link_to 'admin', admin_path
+    .col-md-4.col-md-offset-4
+      = yield
