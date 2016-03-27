@@ -27,12 +27,23 @@ gem 'jbuilder', '~> 2.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Monetize
+gem 'money-rails'
+gem 'google_currency'
+
+# Bootstrap
+gem 'bootstrap-sass'
+gem 'bootstrap_form'
+
+gem 'slim-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails'
 end
 
 group :development do
