@@ -4,6 +4,8 @@ class Exchange < ApplicationRecord
   validates :iso_from, inclusion: { in: %w(usd) }
   validates :iso_to, inclusion: { in: %w(rub) }
 
+  after_update :broadcast_rate!
+
   def rate
     expired? ? fresh_rate! : custom_rate
   end
@@ -29,5 +31,9 @@ class Exchange < ApplicationRecord
 
   def bank
     Money::Bank::GoogleCurrency.new
+  end
+
+  def broadcast_rate!
+    ActionCable.server.broadcast 'rate', rate: rate
   end
 end

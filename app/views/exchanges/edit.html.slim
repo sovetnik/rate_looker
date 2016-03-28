@@ -1,8 +1,6 @@
-h1 Exchanges#edit
-p Find me in app/views/exchanges/edit.html.slim
+h1 Custom rate
 
-
-= bootstrap_form_for @exchange do |f|
+= bootstrap_form_for @exchange, url: '/exchange' do |f|
 
   = f.number_field :custom_rate
   = f.datetime_select :expires_at, layout: :inline
