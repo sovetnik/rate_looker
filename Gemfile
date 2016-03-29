@@ -34,15 +34,15 @@ gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'slim-rails'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'sidekiq'
+gem 'sidetiq'
+gem 'redis-rails', require: false
 
 group :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'capybara'
-  gem 'poltergeist'
 end
 
 group :development do

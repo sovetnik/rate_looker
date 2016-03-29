@@ -8,14 +8,18 @@ class ExchangesController < ApplicationController
   end
 
   def update
-    @exchange.update(exchange_params)
-    redirect_to root_path
+    if @exchange.update(exchange_params)
+      render :show
+    else
+      render :edit
+    end
   end
 
   private
 
   def set_exchange
     @exchange = Exchange.find_or_create_by(iso_from: :usd, iso_to: :rub)
+    @exchange.custom_rate ||= 0
   end
 
   def exchange_params

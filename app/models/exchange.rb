@@ -3,7 +3,7 @@ require 'money/bank/google_currency'
 class Exchange < ApplicationRecord
   validates :iso_from, inclusion: { in: %w(usd) }
   validates :iso_to, inclusion: { in: %w(rub) }
-
+  validates :custom_rate, :fresh_rate, numericality: true
   after_update :broadcast_rate!
 
   def rate
@@ -11,7 +11,7 @@ class Exchange < ApplicationRecord
   end
 
   def refresh_rate!
-    update!(fresh_rate: fetch_rate)
+    update!(fresh_rate: fetch_rate) unless fetch_rate == fresh_rate
     fetch_rate
   end
 
@@ -34,6 +34,6 @@ class Exchange < ApplicationRecord
   end
 
   def broadcast_rate!
-    ActionCable.server.broadcast 'rate', rate: rate
+    RateRefreshJob.perform_later self
   end
 end

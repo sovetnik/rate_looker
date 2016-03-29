@@ -1,8 +1,8 @@
-h1 Custom rate
+h1 Set rate
 
 = bootstrap_form_for @exchange, url: '/exchange' do |f|
 
-  = f.number_field :custom_rate
+  = f.text_field :custom_rate
   = f.datetime_select :expires_at, layout: :inline
   
   = f.submit 'update rate', class: 'btn btn-success btn-sm'

@@ -16,9 +16,17 @@ RSpec.describe ExchangesController, type: :controller do
   end
 
   describe 'POST update' do
-    it 'returns http redirect' do
-      post :update, exchange: { custom_rate: 42, expires_at: Time.current + 1.hour }
-      expect(response).to have_http_status(:found)
+    it 'render show with http success' do
+      post :update, params: {
+        exchange: { custom_rate: 42, expires_at: Time.current + 1.hour }
+      }
+      expect(response).to have_http_status(:ok)
+    end
+    it 'render edit with http success' do
+      post :update, params: {
+        exchange: { custom_rate: 'forty two', expires_at: Time.current + 1.hour }
+      }
+      expect(response).to have_http_status(:ok)
     end
   end
 end
